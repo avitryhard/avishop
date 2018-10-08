@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AviShop.Data.Infrasctucture
+namespace AviShop.Data.Infrastructure
 {
     public class Disposable : IDisposable
     {
@@ -27,7 +27,7 @@ namespace AviShop.Data.Infrasctucture
             isDisposed = true;
         }
 
-        //Override this to dispose custom object
+        // Ovveride this to dispose custom objects
         protected virtual void DisposeCore()
         {
         }

@@ -1,4 +1,4 @@
-﻿namespace AviShop.Data.Infrasctucture
+﻿namespace AviShop.Data.Infrastructure
 {
     public interface IUnitOfWork
     {

@@ -1,4 +1,4 @@
-﻿namespace AviShop.Data.Infrasctucture
+﻿namespace AviShop.Data.Infrastructure
 {
     public class DbFactory : Disposable, IDbFactory
     {
@@ -12,9 +12,7 @@
         protected override void DisposeCore()
         {
             if (dbContext != null)
-            {
                 dbContext.Dispose();
-            }
         }
     }
 }
