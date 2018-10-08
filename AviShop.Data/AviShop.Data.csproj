@@ -48,14 +48,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AviShopDbContext.cs" />
-    <Compile Include="Infrasctucture\DbFactory.cs" />
-    <Compile Include="Infrasctucture\Disposable.cs" />
-    <Compile Include="Infrasctucture\IDbFactory.cs" />
-    <Compile Include="Infrasctucture\IRepository.cs" />
-    <Compile Include="Infrasctucture\IUnitOfWork.cs" />
-    <Compile Include="Infrasctucture\RepositoryBase.cs" />
-    <Compile Include="Infrasctucture\UnitOfWork.cs" />
+    <Compile Include="Infrastructure\DbFactory.cs" />
+    <Compile Include="Infrastructure\Disposable.cs" />
+    <Compile Include="Infrastructure\IDbFactory.cs" />
+    <Compile Include="Infrastructure\IRepository.cs" />
+    <Compile Include="Infrastructure\IUnitOfWork.cs" />
+    <Compile Include="Infrastructure\RepositoryBase.cs" />
+    <Compile Include="Infrastructure\UnitOfWork.cs" />
+    <Compile Include="Migrations\201810081029337_IntialDB.cs" />
+    <Compile Include="Migrations\201810081029337_IntialDB.Designer.cs">
+      <DependentUpon>201810081029337_IntialDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ProductCategoryRepository.cs" />
+    <Compile Include="Repositories\ProductRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -72,7 +79,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Repositories\" />
+    <EmbeddedResource Include="Migrations\201810081029337_IntialDB.resx">
+      <DependentUpon>201810081029337_IntialDB.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
