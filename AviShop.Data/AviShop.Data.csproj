@@ -47,7 +47,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AviShopDbContext.cs" />
+    <Compile Include="Infrastructure\DbFactory.cs" />
+    <Compile Include="Infrastructure\Disposable.cs" />
+    <Compile Include="Infrastructure\IDbFactory.cs" />
+    <Compile Include="Infrastructure\IRepository.cs" />
+    <Compile Include="Infrastructure\IUnitOfWork.cs" />
+    <Compile Include="Infrastructure\RepositoryBase.cs" />
+    <Compile Include="Infrastructure\UnitOfWork.cs" />
+    <Compile Include="Migrations\201810081029337_IntialDB.cs" />
+    <Compile Include="Migrations\201810081029337_IntialDB.Designer.cs">
+      <DependentUpon>201810081029337_IntialDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ProductCategoryRepository.cs" />
+    <Compile Include="Repositories\ProductRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -58,6 +73,15 @@
       <Project>{30bc0cdc-41f3-4b02-b14c-0b3b7205d519}</Project>
       <Name>AviShop.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AviShop.Model\AviShop.Model.csproj">
+      <Project>{72d3f841-084f-4068-b9f9-26c169747677}</Project>
+      <Name>AviShop.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201810081029337_IntialDB.resx">
+      <DependentUpon>201810081029337_IntialDB.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
