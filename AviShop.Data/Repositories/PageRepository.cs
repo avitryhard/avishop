@@ -3,7 +3,7 @@ using AviShop.Model.Models;
 
 namespace AviShop.Data.Repositories
 {
-    public interface IPageRepository
+    public interface IPageRepository : IRepository<Page>
     {
     }
 

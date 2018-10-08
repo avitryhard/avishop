@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AviShop.Data.Repositories
 {
-    public interface ISystemConfigRepository
+    public interface ISystemConfigRepository : IRepository<SystemConfig>
     {
     }
     public class SystemConfigRepository : RepositoryBase<SystemConfig>, ISystemConfigRepository

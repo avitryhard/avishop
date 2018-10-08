@@ -3,7 +3,7 @@ using AviShop.Model.Models;
 
 namespace AviShop.Data.Repositories
 {
-    public interface ISupportOnlineRepository
+    public interface ISupportOnlineRepository : IRepository<SupportOnline>
     {
     }
 

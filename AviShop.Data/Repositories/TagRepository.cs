@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AviShop.Data.Repositories
 {
-    public interface ITagRepository
+    public interface ITagRepository : IRepository<Tag>
     {
     }
     public class TagRepository : RepositoryBase<Tag>, ITagRepository
