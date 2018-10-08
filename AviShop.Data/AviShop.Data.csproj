@@ -47,6 +47,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AviShopDbContext.cs" />
+    <Compile Include="Infrasctucture\DbFactory.cs" />
+    <Compile Include="Infrasctucture\Disposable.cs" />
+    <Compile Include="Infrasctucture\IDbFactory.cs" />
+    <Compile Include="Infrasctucture\IRepository.cs" />
+    <Compile Include="Infrasctucture\IUnitOfWork.cs" />
+    <Compile Include="Infrasctucture\RepositoryBase.cs" />
+    <Compile Include="Infrasctucture\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -58,6 +66,13 @@
       <Project>{30bc0cdc-41f3-4b02-b14c-0b3b7205d519}</Project>
       <Name>AviShop.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AviShop.Model\AviShop.Model.csproj">
+      <Project>{72d3f841-084f-4068-b9f9-26c169747677}</Project>
+      <Name>AviShop.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Repositories\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
