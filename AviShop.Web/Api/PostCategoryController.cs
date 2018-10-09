@@ -1,39 +1,101 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using AviShop.Model.Models;
+using AviShop.Service;
+using AviShop.Web.Infrastructure.Core;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
 namespace AviShop.Web.Api
 {
-    public class PostCategoryController : ApiController
+    [RoutePrefix("api/postcategory")]
+    public class PostCategoryController : ApiControllerBase
     {
-        // GET api/<controller>
-        public IEnumerable<string> Get()
+        private IPostCategoryService _postCategoryService;
+
+        public PostCategoryController(IErrorService errorService, IPostCategoryService postCategoryService)
+            : base(errorService)
         {
-            return new string[] { "value1", "value2" };
+            this._postCategoryService = postCategoryService;
         }
 
-        // GET api/<controller>/5
-        public string Get(int id)
+        public HttpResponseMessage Post(HttpRequestMessage requestMessage, PostCategory postCategory)
         {
-            return "value";
+            return CreateHttpResponse(requestMessage, () =>
+            {
+                HttpResponseMessage response = null;
+                if (ModelState.IsValid)
+                {
+                    requestMessage.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var category = _postCategoryService.Add(postCategory);
+                    _postCategoryService.Save();
+
+                    response = requestMessage.CreateResponse(HttpStatusCode.Created, category);
+                }
+                return response;
+            });
         }
 
-        // POST api/<controller>
-        public void Post([FromBody]string value)
+        public HttpResponseMessage Put(HttpRequestMessage requestMessage, PostCategory postCategory)
         {
+            return CreateHttpResponse(requestMessage, () =>
+            {
+                HttpResponseMessage response = null;
+                if (ModelState.IsValid)
+                {
+                    requestMessage.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    _postCategoryService.Update(postCategory);
+                    _postCategoryService.Save();
+
+                    response = requestMessage.CreateResponse(HttpStatusCode.OK);
+                }
+                return response;
+            });
         }
 
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody]string value)
+        public HttpResponseMessage Delete(HttpRequestMessage requestMessage, int id)
         {
+            return CreateHttpResponse(requestMessage, () =>
+            {
+                HttpResponseMessage response = null;
+                if (ModelState.IsValid)
+                {
+                    requestMessage.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var category = _postCategoryService.Delete(id);
+                    _postCategoryService.Save();
+
+                    response = requestMessage.CreateResponse(HttpStatusCode.OK, category);
+                }
+                return response;
+            });
         }
 
-        // DELETE api/<controller>/5
-        public void Delete(int id)
+        [Route("getall")]
+        public HttpResponseMessage Get(HttpRequestMessage requestMessage)
         {
+            return CreateHttpResponse(requestMessage, () =>
+            {
+                HttpResponseMessage response = null;
+                if (ModelState.IsValid)
+                {
+                    requestMessage.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var listCategory = _postCategoryService.GetAll();
+
+                    response = requestMessage.CreateResponse(HttpStatusCode.OK, listCategory);
+                }
+                return response;
+            });
         }
     }
 }

@@ -18,6 +18,8 @@ namespace AviShop.Service
         IEnumerable<PostCategory> GetAllByParentId(int parentId);
 
         PostCategory GetByID(int id);
+
+        void Save();
     }
 
     public class PostCategoryService : IPostCategoryService
@@ -63,6 +65,11 @@ namespace AviShop.Service
         public PostCategory GetByID(int id)
         {
             return _postCategoryRepository.GetSingleById(id);
+        }
+
+        public void Save()
+        {
+            _unitOfWork.Commit();
         }
 
         public void Update(PostCategory postCategory)
