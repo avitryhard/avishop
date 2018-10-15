@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AviShop.Service
 {
-    public interface IErrorService
+    public partial interface IErrorService
     {
         Error Create(Error error);
         void Save();

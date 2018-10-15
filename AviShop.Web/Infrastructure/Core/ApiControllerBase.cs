@@ -1,12 +1,12 @@
-﻿using AviShop.Model.Models;
-using AviShop.Service;
-using System;
+﻿using System;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using AviShop.Model.Models;
+using AviShop.Service;
 
 namespace AviShop.Web.Infrastructure.Core
 {
@@ -19,12 +19,12 @@ namespace AviShop.Web.Infrastructure.Core
             this._errorService = errorService;
         }
 
-        protected HttpResponseMessage CreateHttpResponse(HttpRequestMessage requestMessage, Func<HttpResponseMessage> func)
+        protected HttpResponseMessage CreateHttpResponse(HttpRequestMessage requestMessage, Func<HttpResponseMessage> function)
         {
             HttpResponseMessage response = null;
             try
             {
-                response = func.Invoke();
+                response = function.Invoke();
             }
             catch (DbEntityValidationException ex)
             {
