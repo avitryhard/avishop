@@ -1,9 +1,11 @@
 ﻿using AviShop.Model.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration;
 
 namespace AviShop.Data
 {
-    public class AviShopDbContext : DbContext
+    public class AviShopDbContext : IdentityDbContext<ApplicationUser>
     {
         public AviShopDbContext() : base("AviShopConnection")
         {
@@ -28,8 +30,17 @@ namespace AviShop.Data
         public DbSet<Tag> Tags { set; get; }
         public DbSet<VisitorStatistic> VisitorStatistic { set; get; }
         public DbSet<Error> Errors { set; get; }
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+
+        public static AviShopDbContext Create()
         {
+            return new AviShopDbContext();
+        }
+
+        protected override void OnModelCreating(DbModelBuilder builder)
+        {
+            builder.Entity<IdentityUserRole>().HasKey(i => new { i.UserId, i.RoleId });
+            builder.Entity<IdentityUserLogin>().HasKey(i => i.UserId);
+
         }
     }
 }
