@@ -2,16 +2,19 @@
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using AutoMapper;
 using AviShop.Model.Models;
 using AviShop.Service;
 using AviShop.Web.Infrastructure.Core;
+using AviShop.Web.Infrastructure.Extensions;
+using AviShop.Web.Models;
 
 namespace AviShop.Web.Api
 {
     [RoutePrefix("api/postcategory")]
     public class PostCategoryController : ApiControllerBase
     {
-        IPostCategoryService _postCategoryService;
+        private readonly IPostCategoryService _postCategoryService;
 
         public PostCategoryController(IErrorService errorService, IPostCategoryService postCategoryService)
             : base(errorService)
@@ -24,15 +27,18 @@ namespace AviShop.Web.Api
         {
             return CreateHttpResponse(request, () =>
             {
-                var listCategory = _postCategoryService.GetAll();                
+                var listCategory = _postCategoryService.GetAll();
 
-                HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, listCategory);
+                var listPostCategoryVM = Mapper.Map<List<PostCategoryViewModel>>(listCategory);
+
+                HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, listPostCategoryVM);
 
                 return response;
             });
         }
         
-        public HttpResponseMessage Post(HttpRequestMessage request)
+        [Route("add")]
+        public HttpResponseMessage Post(HttpRequestMessage request, PostCategoryViewModel postCategoryVM)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -43,7 +49,8 @@ namespace AviShop.Web.Api
                 }
                 else
                 {
-                    PostCategory newPostCategory = new PostCategory();                    
+                    PostCategory newPostCategory = new PostCategory();
+                    newPostCategory.UpdatePostCategory(postCategoryVM);
 
                     var category = _postCategoryService.Add(newPostCategory);
                     _postCategoryService.Save();
@@ -55,7 +62,8 @@ namespace AviShop.Web.Api
             });
         }
         
-        public HttpResponseMessage Put(HttpRequestMessage request)
+        [Route("update")]
+        public HttpResponseMessage Put(HttpRequestMessage request, PostCategoryViewModel postCategoryVM)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -65,7 +73,10 @@ namespace AviShop.Web.Api
                     request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
                 }
                 else
-                {                    
+                {
+                    var postCategoryDb = _postCategoryService.GetByID(postCategoryVM.ID);
+                    postCategoryDb.UpdatePostCategory(postCategoryVM);
+                    _postCategoryService.Update(postCategoryDb);
                     _postCategoryService.Save();
 
                     response = request.CreateResponse(HttpStatusCode.OK);
