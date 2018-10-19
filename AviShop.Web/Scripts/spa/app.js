@@ -1,20 +1,24 @@
 ﻿var myApp = angular.module('AviShop', []);
 
-myApp.controller("thongBaoTruong", thongBaoTruong);
-myApp.controller("thongBaoHocSinh", thongBaoHocSinh);
-myApp.controller("thongBaoGiaoVien", thongBaoGiaoVien);
+myApp.controller('myController', myController);
+myApp.service('Validator', Validator);
 
-//declare
-function thongBaoTruong($scope)
-{
-    $scope.message = "Day la thong bao cua truong";        
+myController.$inject = ['$scope', 'Validator'];
+
+function myController($scope, Validator) {  
+    $scope.checkNumber = function () {
+        Validator.checkNumber($scope.num);
+    }
+    $scope.num = 1;
 }
 
-function thongBaoHocSinh($scope)
-{
-    $scope.message = "Day la thong bao cua hoc sinh";
-}
-
-function thongBaoGiaoVien($scope) {
-    $scope.message = "Day la thong bao cua giao vien";
+function Validator($window) {
+    return {
+        checkNumber : checkNumber
+    }
+    function checkNumber(input) {
+        if (input % 2 == 0)
+            window.alert("Day la so chan");
+        else window.alert("Day la so le");
+    }
 }
