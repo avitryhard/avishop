@@ -3,38 +3,45 @@ using AviShop.Data.Repositories;
 using AviShop.Model.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AviShop.Service
 {
     public interface IProductCategoryService
     {
         void Add(ProductCategory productCategory);
+
         void Update(ProductCategory producCategory);
+
         void Delete(int data);
+
         IEnumerable<ProductCategory> GetAll();
+
         IEnumerable<ProductCategory> GetAllByParentId(int parentId);
+
         ProductCategory GetById(int id);
     }
 
-    public class ProductCategoryService :IProductCategoryService
+    public class ProductCategoryService : IProductCategoryService
     {
+
+        #region Properties
         private IProductCategoryRepository _productCategoryRepository;
         private IUnitOfWork _unitOfWork;
+        #endregion
 
         #region ================Constructor==============
-        public ProductCategoryService(IProductCategoryRepository productCategoryRepository, 
+
+        public ProductCategoryService(IProductCategoryRepository productCategoryRepository,
                                        IUnitOfWork unitOfWork)
         {
             this._productCategoryRepository = productCategoryRepository;
             this._unitOfWork = unitOfWork;
         }
-        #endregion
+
+        #endregion ================Constructor==============
 
         #region ===============Function=============
+
         public void Add(ProductCategory productCategory)
         {
             throw new NotImplementedException();
@@ -63,7 +70,8 @@ namespace AviShop.Service
         public ProductCategory GetById(int id)
         {
             throw new NotImplementedException();
-        }        
-        #endregion
+        }
+
+        #endregion ===============Function=============
     }
 }

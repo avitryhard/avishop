@@ -16,14 +16,20 @@ namespace AviShop.Service
     }
     public class ErrorService : IErrorService
     {
-        IErrorRepository _errorRepository;
-        IUnitOfWork _unitOfWork;
+        #region Properties
+        private IErrorRepository _errorRepository;
+        private IUnitOfWork _unitOfWork;
+        #endregion
 
+        #region ctor
         public ErrorService(ErrorRepository errorRepository,UnitOfWork unitOfWork)
         {
             this._errorRepository = errorRepository;
             this._unitOfWork = unitOfWork;
         }
+        #endregion
+
+        #region Function
         public Error Create(Error error)
         {
             return _errorRepository.Add(error);
@@ -33,5 +39,6 @@ namespace AviShop.Service
         {
             _unitOfWork.Commit();
         }
+        #endregion
     }
 }

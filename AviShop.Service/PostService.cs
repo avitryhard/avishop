@@ -28,15 +28,20 @@ namespace AviShop.Service
 
     public class PostService : IPostService
     {
+        #region Properties
         private IPostRepository _postRepository;
         private IUnitOfWork _unitOfWork;
+        #endregion
 
+        #region ctor
         public PostService(IPostRepository postRepository, IUnitOfWork unitOfWork)
         {
             this._postRepository = postRepository;
             this._unitOfWork = unitOfWork;
         }
+        #endregion
 
+        #region Function
         public Post Add(Post post)
         {
             return _postRepository.Add(post);
@@ -82,5 +87,6 @@ namespace AviShop.Service
         {
             _postRepository.Update(post);
         }
+        #endregion
     }
 }
