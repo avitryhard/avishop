@@ -1,16 +1,12 @@
 ﻿using AviShop.Model.Models;
 using AviShop.Web.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace AviShop.Web.Infrastructure.Extensions
 {
     public static class EntityExtension
     {
-        public static void UpdatePostCategory(this PostCategory postCategory,PostCategoryViewModel postCategoryVM)
-        {            
+        public static void UpdatePostCategory(this PostCategory postCategory, PostCategoryViewModel postCategoryVM)
+        {
             postCategory.ID = postCategoryVM.ID;
             postCategory.Name = postCategoryVM.Name;
             postCategory.Alias = postCategoryVM.Alias;
@@ -26,8 +22,8 @@ namespace AviShop.Web.Infrastructure.Extensions
             postCategory.UpdatedBy = postCategoryVM.UpdatedBy;
             postCategory.MetaKeyword = postCategoryVM.MetaKeyword;
             postCategory.MetaDescription = postCategoryVM.MetaDescription;
-            postCategory.Status = postCategoryVM.Status;            
-    }
+            postCategory.Status = postCategoryVM.Status;
+        }
 
         public static void UpdatePost(this Post post, PostViewModel postVM)
         {
