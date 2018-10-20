@@ -1,18 +1,19 @@
 ﻿var myApp = angular.module('AviShop', []);
 
 myApp.controller('myController', myController);
-myApp.service('Validator', Validator);
+myApp.service('validatorService', validatorService);
+myApp.directive('aviShopDirective', aviShopDirective);
 
-myController.$inject = ['$scope', 'Validator'];
+myController.$inject = ['$scope', 'validatorService'];
 
-function myController($scope, Validator) {  
+function myController($scope, validatorService) {  
     $scope.checkNumber = function () {
-        Validator.checkNumber($scope.num);
+        validatorService.checkNumber($scope.num);
     }
     $scope.num = 1;
 }
 
-function Validator($window) {
+function validatorService($window) {
     return {
         checkNumber : checkNumber
     }
@@ -20,5 +21,12 @@ function Validator($window) {
         if (input % 2 == 0)
             window.alert("Day la so chan");
         else window.alert("Day la so le");
+    }
+}
+
+function aviShopDirective() {
+    return {
+        restrict: "A",
+        templateUrl: "/Scripts/spa/AviShopDirective.html"
     }
 }
