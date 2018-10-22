@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace AviShop.Web.Models
 {
-    public class PostCategoryViewModel
+    public class ProductCategoryViewModel
     {
         public int ID { get; set; }
 
@@ -15,13 +15,13 @@ namespace AviShop.Web.Models
 
         public int? ParentID { get; set; }
 
-        public int DisplayOder { get; set; }
+        public int? DisplayOrder { get; set; }
 
         public string Image { get; set; }
 
-        public bool? HomeFlag { get; set; }
+        public bool? HomeFlag { set; get; }
 
-        public virtual IEnumerable<PostViewModel> Posts { set; get; }
+        public virtual IEnumerable<ProductViewModel> Products { get; set; }
 
         // Auditable
         public DateTime? CreatedDate { get; set; }

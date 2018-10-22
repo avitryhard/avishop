@@ -1,7 +1,11 @@
 ﻿/// <reference path="../assets/admin/libs/angular/angular.js" />
 
 (function () {
-    angular.module('avishop', ['avishop.products','avishop.common']).config(config);
+    angular.module('avishop',
+        ['avishop.product_categories',
+         'avishop.products',
+         'avishop.common'])
+        .config(config);
 
     config.$inject = ['$stateProvider', '$urlRouterProvider'];
 

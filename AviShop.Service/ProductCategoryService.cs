@@ -1,14 +1,13 @@
 ﻿using AviShop.Data.Infrastructure;
 using AviShop.Data.Repositories;
 using AviShop.Model.Models;
-using System;
 using System.Collections.Generic;
 
 namespace AviShop.Service
 {
     public interface IProductCategoryService
     {
-        void Add(ProductCategory productCategory);
+        ProductCategory Add(ProductCategory productCategory);
 
         void Update(ProductCategory producCategory);
 
@@ -23,11 +22,12 @@ namespace AviShop.Service
 
     public class ProductCategoryService : IProductCategoryService
     {
-
         #region Properties
+
         private IProductCategoryRepository _productCategoryRepository;
         private IUnitOfWork _unitOfWork;
-        #endregion
+
+        #endregion Properties
 
         #region ================Constructor==============
 
@@ -42,34 +42,34 @@ namespace AviShop.Service
 
         #region ===============Function=============
 
-        public void Add(ProductCategory productCategory)
+        public ProductCategory Add(ProductCategory productCategory)
         {
-            throw new NotImplementedException();
+            return _productCategoryRepository.Add(productCategory);
         }
 
         public void Update(ProductCategory producCategory)
         {
-            throw new NotImplementedException();
+            _productCategoryRepository.Update(producCategory);
         }
 
         public void Delete(int data)
         {
-            throw new NotImplementedException();
+            _productCategoryRepository.Delete(data);
         }
 
         public IEnumerable<ProductCategory> GetAll()
         {
-            throw new NotImplementedException();
+            return _productCategoryRepository.GetAll();
         }
 
         public IEnumerable<ProductCategory> GetAllByParentId(int parentId)
         {
-            throw new NotImplementedException();
+            return _productCategoryRepository.GetMulti(x => x.Status && x.ParentID == parentId);
         }
 
         public ProductCategory GetById(int id)
         {
-            throw new NotImplementedException();
+            return _productCategoryRepository.GetSingleById(id);
         }
 
         #endregion ===============Function=============
