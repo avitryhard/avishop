@@ -13,7 +13,7 @@ namespace AviShop.Service
 
         void Update(PostCategory postCategory);
 
-        IEnumerable<PostCategory> GetAll();
+        IEnumerable<PostCategory> GetAll();        
 
         IEnumerable<PostCategory> GetAllByParentId(int parentId);
 
