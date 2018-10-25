@@ -24,9 +24,18 @@
             </div>
         </div>
         <div class="box-body">
-            Start creating your amazing application!
-        </div>
-        <div class="box-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <input type="text" class="form-control" ng-model="keyword" placeholder="Tìm kiếm theo danh mục">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" ng-click="search()" type="button">
+                                Tìm kiếm
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
             <table class="table table-bordered">
                 <tr>
                     <th style="width: 10%">ID</th>
@@ -47,7 +56,10 @@
                     <td>
                         <button class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></button>
                         <button class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i></button>
-                    </td>
+                    </td>                   
+                </tr>
+                <tr>
+                    <td colspan="6" style="text-align:right">Tổng số bản ghi: {{totalCount}}</td>
                 </tr>
             </table>
         </div>
