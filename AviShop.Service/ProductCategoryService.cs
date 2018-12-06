@@ -5,13 +5,12 @@ using System.Collections.Generic;
 
 namespace AviShop.Service
 {
-    public interface IProductCategoryService
-    {
+    public interface IProductCategoryService    {
         ProductCategory Add(ProductCategory productCategory);
 
         void Update(ProductCategory producCategory);
 
-        void Delete(int data);
+        ProductCategory Delete(int data);
 
         IEnumerable<ProductCategory> GetAll();
 
@@ -20,6 +19,8 @@ namespace AviShop.Service
         IEnumerable<ProductCategory> GetAllByParentId(int parentId);
 
         ProductCategory GetById(int id);
+
+        void Save();
     }
 
     public class ProductCategoryService : IProductCategoryService
@@ -54,9 +55,9 @@ namespace AviShop.Service
             _productCategoryRepository.Update(producCategory);
         }
 
-        public void Delete(int data)
+        public ProductCategory Delete(int data)
         {
-            _productCategoryRepository.Delete(data);
+            return _productCategoryRepository.Delete(data);
         }
 
         public IEnumerable<ProductCategory> GetAll()
@@ -81,7 +82,12 @@ namespace AviShop.Service
         public ProductCategory GetById(int id)
         {
             return _productCategoryRepository.GetSingleById(id);
-        }       
+        }
+
+        public void Save()
+        {
+            _unitOfWork.Commit();
+        }
 
         #endregion ===============Function=============
     }

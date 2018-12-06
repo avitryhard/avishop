@@ -43,6 +43,8 @@ namespace AviShop.Model.Models
         public bool? HotFlag { get; set; }
         public int? ViewCount { get; set; }
 
+        public string Tags { get; set; }
+
         [ForeignKey("CategoryID")]
         public virtual ProductCategory ProductCategories { get; set; }
 

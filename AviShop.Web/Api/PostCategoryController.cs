@@ -36,7 +36,7 @@ namespace AviShop.Web.Api
                 return response;
             });
         }
-        
+
         [Route("add")]
         public HttpResponseMessage Post(HttpRequestMessage request, PostCategoryViewModel postCategoryVM)
         {
@@ -45,7 +45,7 @@ namespace AviShop.Web.Api
                 HttpResponseMessage response = null;
                 if (ModelState.IsValid)
                 {
-                    request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                    response = request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
                 }
                 else
                 {
@@ -61,7 +61,7 @@ namespace AviShop.Web.Api
                 return response;
             });
         }
-        
+
         [Route("update")]
         public HttpResponseMessage Put(HttpRequestMessage request, PostCategoryViewModel postCategoryVM)
         {

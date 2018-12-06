@@ -1,3 +1,3 @@
 ﻿(function () {
-    angular.module('avishop.common', ['ui.router'])
+    angular.module('avishop.common', ['ui.router', 'ngBootbox','ngCkeditor'])
 })();

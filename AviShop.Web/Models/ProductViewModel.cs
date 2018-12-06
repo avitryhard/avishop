@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace AviShop.Web.Models
 {
@@ -35,5 +37,24 @@ namespace AviShop.Web.Models
         public virtual ProductCategoryViewModel ProductCategories { get; set; }
 
         public virtual IEnumerable<ProductTagViewModel> ProductTags { get; set; }
+
+        public DateTime? CreatedDate { get; set; }
+
+        public string CreatedBy { get; set; }
+
+        public DateTime? UpdatedDate { get; set; }
+
+        public string UpdatedBy { get; set; }
+
+        // Seoable
+        public string MetaKeyword { get; set; }
+
+        public string MetaDescription { get; set; }
+
+        //Switchable
+        [Required]
+        public bool Status { get; set; }
+
+        public string Tags { get; set; }
     }
 }

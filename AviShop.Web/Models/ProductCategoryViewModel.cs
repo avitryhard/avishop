@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace AviShop.Web.Models
 {
@@ -7,14 +8,17 @@ namespace AviShop.Web.Models
     {
         public int ID { get; set; }
 
+        [Required(ErrorMessage ="Yêu cầu nhập tên danh mục")]
         public string Name { get; set; }
 
+        [Required(ErrorMessage = "Yêu cầu nhập tên SEO")]
         public string Alias { get; set; }
 
         public string Description { get; set; }
 
         public int? ParentID { get; set; }
 
+        [Required(ErrorMessage = "Yêu cầu nhập thứ tự")]
         public int? DisplayOrder { get; set; }
 
         public string Image { get; set; }
@@ -38,6 +42,7 @@ namespace AviShop.Web.Models
         public string MetaDescription { get; set; }
 
         //Switchable
+        [Required]
         public bool Status { get; set; }
     }
 }
