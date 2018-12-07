@@ -13,15 +13,18 @@ namespace AviShop.Service
     public interface ICommonService
     {
         Footer GetFooter();
+        IEnumerable<Slide> GetSlides();
     }
 
     public class CommonService: ICommonService
     {
         IFooterRepository _footerRepository;
+        ISlideRepository _slideRepository;
         IUnitOfWork _unitOfWork;
 
-        public CommonService(IFooterRepository footerRepository, IUnitOfWork unitOfWork)
+        public CommonService(ISlideRepository slideRepository,IFooterRepository footerRepository, IUnitOfWork unitOfWork)
         {
+            this._slideRepository = slideRepository;
             this._footerRepository = footerRepository;
             this._unitOfWork = unitOfWork;
         }
@@ -29,6 +32,11 @@ namespace AviShop.Service
         public Footer GetFooter()
         {
             return _footerRepository.GetSingleByCondition(x => x.ID == CommonConstants.DefaultFooterID);
+        }
+
+        public IEnumerable<Slide> GetSlides()
+        {
+            return _slideRepository.GetMulti(x => x.Status == true);
         }
     }
 }

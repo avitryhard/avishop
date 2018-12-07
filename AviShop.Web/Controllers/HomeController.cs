@@ -13,17 +13,30 @@ namespace AviShop.Web.Controllers
     public class HomeController : Controller
     {
         IProductCategoryService _productCategoryService;
+        IProductService _productService;
         ICommonService _commonService;
         
-        public HomeController(IProductCategoryService productCategoryService, ICommonService commonService)
+        public HomeController(IProductService productService,IProductCategoryService productCategoryService, ICommonService commonService)
         {
             this._productCategoryService = productCategoryService;
+            this._productService = productService;
             this._commonService = commonService;
         }
 
         public ActionResult Index()
         {
-            return View();
+            var slideModel = _commonService.GetSlides();
+            var slideView = Mapper.Map<IEnumerable<Slide>, IEnumerable<SlideViewModel>>(slideModel);
+            var homeViewModel = new HomeViewModel();
+            homeViewModel.Slides = slideView;
+
+            var lastedProductModel = _productService.GetLasted(3);
+            var topSaleProductModel = _productService.GetHotProduct(3);
+            var lastedProductView = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(lastedProductModel);
+            var topSaleProductView = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(topSaleProductModel);
+            homeViewModel.LastedProducts = lastedProductView;
+            homeViewModel.TopSaleProducts = topSaleProductView;
+            return View(homeViewModel);
         }
 
         public ActionResult About()

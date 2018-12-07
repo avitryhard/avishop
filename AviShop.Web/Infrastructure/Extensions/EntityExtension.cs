@@ -83,6 +83,7 @@ namespace AviShop.Web.Infrastructure.Extensions
             product.Price = productVm.Price;
             product.PromotionPrice = productVm.PromotionPrice;
             product.Warranty = productVm.Warranty;
+            product.HotFlag = productVm.HotFlag;
             product.HomeFlag = productVm.HomeFlag;
             product.ViewCount = productVm.ViewCount;
 

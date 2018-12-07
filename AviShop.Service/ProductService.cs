@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using AviShop.Common;
 using AviShop.Data.Infrastructure;
 using AviShop.Data.Repositories;
@@ -17,6 +18,9 @@ namespace AviShop.Service
         IEnumerable<Product> GetAll();
 
         IEnumerable<Product> GetAll(string keyword);
+
+        IEnumerable<Product> GetLasted(int top);
+        IEnumerable<Product> GetHotProduct(int top);
 
         Product GetById(int id);
 
@@ -89,6 +93,16 @@ namespace AviShop.Service
         public Product GetById(int id)
         {
             return _productRepository.GetSingleById(id);
+        }
+
+        public IEnumerable<Product> GetHotProduct(int top)
+        {
+            return _productRepository.GetMulti(x => x.Status && x.HotFlag == true).OrderByDescending(x => x.CreatedDate).Take(top);
+        }
+
+        public IEnumerable<Product> GetLasted(int top)
+        {
+            return _productRepository.GetMulti(x => x.Status).OrderByDescending(x => x.CreatedDate).Take(top);
         }
 
         public void Save()

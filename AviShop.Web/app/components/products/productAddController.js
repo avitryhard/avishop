@@ -6,7 +6,7 @@
     function productAddController(apiService, $scope, notificationService, $state, commonService) {
         $scope.product = {
             CreatedDate: new Date(),
-            Status: true,
+            Status: true,            
         }
         $scope.ckeditorOptions = {
             languague: 'vi',
