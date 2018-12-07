@@ -15,6 +15,7 @@ using System.Web.Script.Serialization;
 namespace AviShop.Web.Api
 {
     [RoutePrefix("api/productcategory")]
+    [Authorize]
     public class ProductCategoryController : ApiControllerBase
     {
         private readonly IProductCategoryService _productCategoryService;

@@ -15,6 +15,7 @@ using AviShop.Web.Models;
 namespace AviShop.Web.Api
 {
     [RoutePrefix("api/product")]
+    [Authorize]
     public class ProductController : ApiControllerBase
     {
         #region Initialize
@@ -102,6 +103,7 @@ namespace AviShop.Web.Api
                     var newProduct = new Product();
                     newProduct.UpdateProduct(productCategoryVm);
                     newProduct.CreatedDate = DateTime.Now;
+                    newProduct.CreatedBy = User.Identity.Name;
                     _productService.Add(newProduct);
                     _productService.Save();
 
@@ -131,7 +133,7 @@ namespace AviShop.Web.Api
 
                     dbProduct.UpdateProduct(productVm);
                     dbProduct.UpdatedDate = DateTime.Now;
-
+                    dbProduct.CreatedBy = User.Identity.Name;
                     _productService.Update(dbProduct);
                     _productService.Save();
 

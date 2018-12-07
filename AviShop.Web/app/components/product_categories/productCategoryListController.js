@@ -96,8 +96,7 @@
                 function (result) {
                     if (result.data.TotalCount == 0) {
                         notificationService.displayInfo('Không tìm thấy bản ghi nào');
-                    }
-                    else notificationService.displaySuccess('Đã tìm thấy ' + result.data.TotalCount + ' bản ghi.');
+                    }                    
                     $scope.productCategories = result.data.Items;
                     $scope.page = result.data.Page;
                     $scope.pagesCount = result.data.TotalPages;
