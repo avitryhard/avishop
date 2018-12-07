@@ -1,5 +1,6 @@
 ﻿namespace AviShop.Data.Migrations
 {
+    using AviShop.Common;
     using AviShop.Model.Models;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
@@ -68,8 +69,14 @@
                 };
                 context.ProductCategories.AddRange(listProductCategory);
                 context.SaveChanges();
+            }            
+        }
+        private void CreateFooter(AviShopDbContext context)
+        {
+            if(context.Footers.Count(x=>x.ID == CommonConstants.DefaultFooterID) == 0)
+            {
+                string content = "";
             }
-            
         }
     }
 }
