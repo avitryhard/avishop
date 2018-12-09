@@ -3,15 +3,14 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/Layouts.cshtml";
 }
-
 @section footerJS{
     <script src="/Assets/client/js/jquery.wmuSlider.js"></script>
     <script>
         $('.example1').wmuSlider();
     </script>
 }
-
 <div class="shoes-grid">
+
     <div class="wrap-in">
         <div class="wmuSlider example1 slide-grid">
             <div class="wmuSliderWrapper">
@@ -20,7 +19,7 @@
                     <article style="position: absolute; width: 100%; opacity: 0;">
                         <div class="banner-matter">
                             <div class="col-md-5 banner-bag">
-                                <img class="img-responsive " src="@slide.Image" alt=" " />
+                                <img class="img-responsive " src="@slide.Image" alt="@slide.Name" />
                             </div>
                             <div class="col-md-7 banner-off">
                                 @Html.Raw(slide.Content)
@@ -30,19 +29,24 @@
                         </div>
 
                     </article>
+
                 }
+
             </div>
+
             <ul class="wmuSliderPagination">
                 @for (int i = 0; i < Model.Slides.Count(); i++)
                 {
-                    <li><a href="#" class="">@i</a></li>
+                    <li><a href="#" class="">i</a></li>
                 }
+
             </ul>
+
         </div>
     </div>
     <div class="products">
-        <h5 class="latest-product">SẢN PHẨM MỚI NHẤT</h5>
-        <a class="view-all" href="san-pham.html">XEM TẤT CẢ<span> </span></a>
+        <h5 class="latest-product">Sản phẩm mới nhất</h5>
+        <a class="view-all" href="san-pham.html">Xem tất cả<span> </span></a>
     </div>
     <div class="product-left">
         @foreach (var product in Model.LastedProducts)
@@ -73,24 +77,25 @@
                                 <label for="rating-input-1-1" class="rating-star"> </label>
                             </span>
                         </div>
-                        <a class="now-get get-cart" href="#">Thêm vào giỏ</a>
+                        <a class="now-get get-cart btnAddToCart" href="#" data-id="@product.ID">Mua hàng</a>
                         <div class="clearfix"> </div>
                     </div>
                 </div>
             </div>
         }
+
         <div class="clearfix"> </div>
     </div>
     <div class="products">
-        <h5 class="latest-product">SẢN PHẨM BÁN CHẠY</h5>
-        <a class="view-all" href="product.html">XEM TẤT CẢ<span> </span></a>
+        <h5 class="latest-product">Sản phẩm bán chạy</h5>
+        <a class="view-all" href="san-pham-ban-chay.html">Xem tất cả<span> </span></a>
     </div>
     <div class="product-left">
         @foreach (var product in Model.TopSaleProducts)
         {
             var url = "/" + product.Alias + ".p-" + product.ID + ".html";
             <div class="col-md-4 chain-grid grid-top-chain">
-                <a href="@url"><img class="img-responsive chain" img src="@product.Image" /></a>
+                <a href="@url"><img class="img-responsive chain" src="@product.Image" /></a>
                 <span class="star"> </span>
                 <div class="grid-chain-bottom">
                     <h6><a href="@url">@product.Name</a></h6>
@@ -114,7 +119,7 @@
                                 <label for="rating-input-1-1" class="rating-star"> </label>
                             </span>
                         </div>
-                        <a class="now-get get-cart" href="#">Thêm vào giỏ</a>
+                        <a class="now-get get-cart btnAddToCart" href="#" data-id="@product.ID">Mua hàng</a>
                         <div class="clearfix"> </div>
                     </div>
                 </div>

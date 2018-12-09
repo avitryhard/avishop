@@ -30,7 +30,8 @@ namespace AviShop.Data
         public DbSet<Tag> Tags { set; get; }
         public DbSet<VisitorStatistic> VisitorStatistic { set; get; }
         public DbSet<Error> Errors { set; get; }
-
+        public DbSet<ContactDetail> ContactDetails { set; get; }
+        public DbSet<Feedback> Feedbacks { set; get; }
         public static AviShopDbContext Create()
         {
             return new AviShopDbContext();

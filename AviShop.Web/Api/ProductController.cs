@@ -12,7 +12,7 @@ using AviShop.Web.Infrastructure.Core;
 using AviShop.Web.Infrastructure.Extensions;
 using AviShop.Web.Models;
 
-namespace AviShop.Web.Api
+namespace TeduShop.Web.Api
 {
     [RoutePrefix("api/product")]
     [Authorize]
@@ -33,7 +33,7 @@ namespace AviShop.Web.Api
         [HttpGet]
         public HttpResponseMessage GetAll(HttpRequestMessage request)
         {
-            return CreateHttpResponse(request, () =>
+            Func<HttpResponseMessage> func = () =>
             {
                 var model = _productService.GetAll();
 
@@ -41,7 +41,8 @@ namespace AviShop.Web.Api
 
                 var response = request.CreateResponse(HttpStatusCode.OK, responseData);
                 return response;
-            });
+            };
+            return CreateHttpResponse(request, func);
         }
         [Route("getbyid/{id:int}")]
         [HttpGet]
@@ -71,7 +72,7 @@ namespace AviShop.Web.Api
                 totalRow = model.Count();
                 var query = model.OrderByDescending(x => x.CreatedDate).Skip(page * pageSize).Take(pageSize);
 
-                var responseData = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(query);
+                var responseData = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(query.AsEnumerable());
 
                 var paginationSet = new PaginationSet<ProductViewModel>()
                 {
@@ -133,7 +134,7 @@ namespace AviShop.Web.Api
 
                     dbProduct.UpdateProduct(productVm);
                     dbProduct.UpdatedDate = DateTime.Now;
-                    dbProduct.CreatedBy = User.Identity.Name;
+                    dbProduct.UpdatedBy = User.Identity.Name;
                     _productService.Update(dbProduct);
                     _productService.Save();
 

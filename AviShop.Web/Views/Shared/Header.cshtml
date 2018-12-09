@@ -1,4 +1,5 @@
-﻿<div class="header">
+﻿@using Microsoft.AspNet.Identity;
+<div class="header">
     <div class="top-header">
         <div class="container">
             <div class="top-header-left">
@@ -9,6 +10,14 @@
                 <ul class="support">
                     <li class="van"><a href="#"><label> </label></a></li>
                     <li><a href="#">Free shipping <span class="live">on order over 500</span></a></li>
+                </ul>
+                <ul class="support">
+                    <li><a href="#"><label> </label></a></li>
+                    <li><a href="/gioi-thieu.html">Giới thiệu</a></li>
+                </ul>
+                <ul class="support">
+                    <li><a href="#"><label> </label></a></li>
+                    <li><a href="/lien-he.html">Liên hệ</a></li>
                 </ul>
                 <div class="clearfix"> </div>
             </div>
@@ -42,19 +51,36 @@
                     <a href="index.html"><img src="/Assets/client/images/logo.png" alt=" " /></a>
                 </div>
                 <div class="search">
-                    <input type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
-                    <input type="submit" value="SEARCH">
-
+                    <form method="get" action="/tim-kiem.html">
+                        <input type="text" id="txtKeyword" name="keyword" placeholder="Từ khóa">
+                        <input type="submit" value="Tìm kiếm" id="btnSearch">
+                    </form>
                 </div>
                 <div class="clearfix"> </div>
             </div>
             <div class="header-bottom-right">
-                <div class="account"><a href="#"><span> </span>Tài khoản của bạn</a></div>
-                <ul class="login">
-                    <li><a href="dang-nhap.html"><span> </span>Đăng nhập</a></li> |
-                    <li><a href="register.html">Đăng ký</a></li>
-                </ul>
-                <div class="cart"><a href="#"><span> </span>Giỏ hàng</a></div>
+                @using (Html.BeginForm("LogOut", "Account", FormMethod.Post, new { @id = "frmLogout" }))
+                {
+                    if (Request.IsAuthenticated)
+                    {
+                        @Html.AntiForgeryToken()
+                        <ul class="login">
+                            <li><a href="/tai-khoan.html"><span> </span>Xin chào: @User.Identity.GetUserName()</a></li> |
+                            <li><a href="#" id="btnLogout">Thoát</a></li>
+                        </ul>
+
+                    }
+                    else
+                    {
+                        <ul class="login">
+                            <li><a href="/dang-nhap.html"><span> </span>ĐĂNG NHẬP</a></li> |
+                            <li><a href="/dang-ky.html">ĐĂNG KÝ</a></li>
+                        </ul>
+                    }
+                }
+
+
+                <div class="cart"><a href="/gio-hang.html"><span> </span>GIỎ HÀNG</a></div>
                 <div class="clearfix"> </div>
             </div>
             <div class="clearfix"> </div>

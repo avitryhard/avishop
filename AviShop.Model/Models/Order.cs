@@ -33,11 +33,17 @@ namespace AviShop.Model.Models
         public DateTime? CreatedDate { get; set; }
         public string CreatedBy { get; set; }
         public string PaymentStatus { get; set; }
+        public bool Status { get; set; }
 
         [MaxLength(256)]
         public string PaymentMethod { get; set; }
 
-        public bool Status { get; set; }
+        [StringLength(128)]
+        [Column(TypeName = "nvarchar")]
+        public string CustomerId { set; get; }
+
+        [ForeignKey("CustomerId")]
+        public virtual ApplicationUser User { set; get; }
 
         public virtual IEquatable<OrderDetail> OrderDetails { get; set; }
     }

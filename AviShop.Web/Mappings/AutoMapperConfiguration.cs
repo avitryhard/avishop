@@ -18,6 +18,10 @@ namespace AviShop.Web.Mappings
             Mapper.CreateMap<ProductTag, ProductTagViewModel>();
             Mapper.CreateMap<Footer, FooterViewModel>();
             Mapper.CreateMap<Slide, SlideViewModel>();
+            Mapper.CreateMap<Page, PageViewModel>();
+            Mapper.CreateMap<ContactDetail, ContactDetailViewModel>();
+            Mapper.CreateMap<Feedback, FeedbackViewModel>();
+            Mapper.CreateMap<Order, OrderDetailViewModel>();
         }
     }
 }

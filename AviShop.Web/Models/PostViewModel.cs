@@ -23,7 +23,7 @@ namespace AviShop.Web.Models
 
         public bool? HotFlag { get; set; }
 
-        public int? ViewCount { get; set; }
+        public int? ViewCount { get; set; }        
 
         public virtual PostCategoryViewModel PostCategory { get; set; }
 

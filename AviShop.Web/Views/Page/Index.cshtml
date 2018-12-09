@@ -1,0 +1,13 @@
+﻿@model AviShop.Web.Models.PageViewModel
+@{
+    ViewBag.Title = "Giới thiệu";
+    Layout = "~/Views/Shared/Layouts.cshtml";
+}
+
+<div class="single_top">
+    <div class="single_grid">
+        <h1>@Model.Name</h1>
+        @Html.Raw(Model.Content)
+        <div class="clearfix"> </div>
+    </div>
+</div>

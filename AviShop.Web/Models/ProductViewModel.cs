@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace AviShop.Web.Models
 {
+    [Serializable]
     public class ProductViewModel
     {
         public int ID { get; set; }
@@ -34,6 +35,7 @@ namespace AviShop.Web.Models
 
         public int? ViewCount { get; set; }
 
+        public int Quantity { get; set; }
         public virtual ProductCategoryViewModel ProductCategories { get; set; }
 
         public virtual IEnumerable<ProductTagViewModel> ProductTags { get; set; }

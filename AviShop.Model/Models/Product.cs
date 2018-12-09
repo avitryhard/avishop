@@ -45,10 +45,14 @@ namespace AviShop.Model.Models
 
         public string Tags { get; set; }
 
+        public int Quantity { get; set; }
+
         [ForeignKey("CategoryID")]
         public virtual ProductCategory ProductCategories { get; set; }
 
         public virtual IEnumerable<OrderDetail> OrderDetails { get; set; }
         public virtual IEnumerable<ProductTag> ProductTags { get; set; }
+
+
     }
 }
